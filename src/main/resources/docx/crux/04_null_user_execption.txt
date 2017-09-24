@@ -1,0 +1,27 @@
+error:
+------
+com.mapro.configuration.security.WebUserDetailsService returns null.
+
+background:
+-----------
+com.mapro.configuration.security.WebUserDetailsService returns null if username doesn't exists in the
+to the database system.
+
+solution:
+---------
+Should not return null if username is not exists into the database system. Actually UserDetails throws
+UsernameNotFoundException if username not found into the database system. So -
+
+    if (user == null) {
+        return null;
+    }
+
+should be
+
+    if (user == null) {
+        throw new UsernameNotFoundException("User not found");
+    }
+
+reference:
+----------
+https://stackoverflow.com/questions/34538768/why-does-userdetailsservice-return-null-in-spring-boot-app

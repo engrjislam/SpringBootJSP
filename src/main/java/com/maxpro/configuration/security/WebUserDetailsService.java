@@ -30,7 +30,7 @@ public class WebUserDetailsService implements UserDetailsService {
         try {
             User user = userRepository.findByUserName(username);
             if (user == null) {
-                return null;
+                throw new UsernameNotFoundException("User not found");
             }
             return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), getAuthorities(user));
         } catch (Exception e) {

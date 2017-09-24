@@ -1,0 +1,19 @@
+error:
+------
+Any valid user is unable login/logout to the application.
+
+background:
+-----------
+Form data not submitted to UserDetailsService interface by
+com.mapro.configuration.security.WebUserDetailsService class. This is caused by CSRF.
+
+solution:
+---------
+Actually CSRF is enabled by default. So to solve this it should follow either -
+1. Disable CSRF; or
+2. Add following to login and logout form -
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+reference:
+----------
+https://stackoverflow.com/questions/46388430/why-a-user-is-unable-to-login-in-spring-boot-application

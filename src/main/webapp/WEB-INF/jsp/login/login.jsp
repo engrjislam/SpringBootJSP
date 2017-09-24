@@ -19,7 +19,7 @@
 <body>
 <div class="container">
 
-    <c:if test="${param.error}">
+    <c:if test="${param.error != null}">
         <div class="alert alert-danger">
             <strong>Invalid username or password or both.</strong>
         </div>
