@@ -11,15 +11,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!--  home.css -->
-    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="<c:url value="/css/home.css"/>"/>
     <!-- /home.css -->
 
 </head>
 <body>
 
 <div class="container-fluid bg-1 text-center">
-    <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
-    <a th:href="@{/logout}" class="btn btn-default btn-lg">
+    <h3>Hello ${pageContext.request.remoteUser}!</h3>
+    <a href="<c:url value="/logout"/>" class="btn btn-default btn-lg">
         <span class="glyphicon"></span> Logout
     </a>
 </div>

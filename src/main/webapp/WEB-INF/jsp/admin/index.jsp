@@ -18,8 +18,8 @@
 <body>
 
 <div class="container-fluid bg-1 text-center">
-    <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
-    <a th:href="@{/logout}" class="btn btn-default btn-lg">
+    <h3 th:inline="text">Hello ${pageContext.request.remoteUser}!</h3>
+    <a href="<c:url value="/logout"/>" class="btn btn-default btn-lg">
         <span class="glyphicon"></span> Logout
     </a>
 </div>
