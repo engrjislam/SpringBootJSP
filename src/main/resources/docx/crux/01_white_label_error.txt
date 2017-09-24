@@ -1,0 +1,20 @@
+error:
+------
+whitelabel 404
+
+background:
+-----------
+It is introduced when main application file (in this case 'SpringBootJSPApplication.java')
+and any controller are in different package (like 'application' package contains
+'SpringBootJSPApplication.java' while 'controller' package contains 'IndexWebController').
+
+solution:
+---------
+This could be solved by adding @ComponentScan(basePackages={"com.maxpro.controller"}) to main
+project file i.e 'SpringBootJSPApplication.java'. The 'basePackages' parameter contains all
+the packages (like domain, controller, service) other than package where main application (in
+this case 'application').
+
+reference:
+----------
+https://stackoverflow.com/questions/29870852/spring-boot-whitelabel-404

@@ -1,0 +1,57 @@
+error:
+------
+Apache shutdown unexpectedly on port 80 (default).
+
+
+background:
+-----------
+I normally access MySQL database using phpMyAdmin which runs by apache in XAMPP. XAMPP is
+used to access and control 'Apache MySQL PHP'. Generally apache in XAMPP is configured on
+port 80 as default port. Some other application wants to share same port (i.e 80). Then
+apache in XAMPP couldn't run on port 80.
+
+
+solution:
+---------
+This could be solved by changing port from 80 to any unused port (like 8086, 8080 is embed
+port for tomcat which is used by this project 'SpringBootJSP'). Port 80 was changed by 8086
+as -
+
+in 'httpd.conf':
+________________
+[find a line in 'Listen 80' and put 8086 in place of 80 or simply comment
+'Listen 80' and add 'Listen 8086'] -
+
+#Listen 80
+Listen 8086
+
+also find 'ServerName localhost:80' and comment 'ServerName localhost:80' line and add
+'ServerName localhost:8086' as follows -
+
+#ServerName localhost:80
+ServerName localhost:8086
+
+in 'httpd-ssl.conf':
+____________________
+Port 443 is used by Skype [find a line in 'Listen 443' and put 4433 in place of 443 or simply comment
+'Listen 443' and add 'Listen 4433'] -
+
+#Listen 443
+Listen 4433
+
+also find '<VirtualHost _default_:443>' and comment '<VirtualHost _default_:443>' line and add
+following lines -
+
+#<VirtualHost _default_:443>
+<VirtualHost _default_:4433>
+ServerName localhost:4433
+
+accessing 'phpMyAdmin' and 'MySQL':
+___________________________________
+old url: http://localhost/phpmyadmin/index.php
+new url: http://localhost:8086/phpmyadmin/index.php
+
+
+reference:
+----------
+https://stackoverflow.com/questions/18300377/xampp-apache-error-apache-shutdown-unexpectedly
